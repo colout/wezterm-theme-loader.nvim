@@ -1,6 +1,6 @@
 local sub_cmds = {
   fetch = { fn = require("wezterm-theme-loader.fetch").download_themes, nargs = 0 },
-  load = { fn = require("wezterm-theme-loader.loader").find_theme, nargs = 1 },
+  load = { fn = require("wezterm-theme-loader.loader").apply_theme, nargs = 1 },
 }
 
 local sub_cmds_keys = {}
@@ -19,7 +19,10 @@ local function main_cmd(opts)
   end
 
   if #args - 1 ~= sub_cmd.nargs then
-    vim.notify(string.format("wezterm-theme-loader: command '%s' expects %d argument(s)", cmd, sub_cmd.nargs), vim.log.levels.ERROR)
+    vim.notify(
+      string.format("wezterm-theme-loader: command '%s' expects %d argument(s)", cmd, sub_cmd.nargs),
+      vim.log.levels.ERROR
+    )
     return
   end
 
