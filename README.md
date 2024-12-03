@@ -4,15 +4,11 @@ A Neovim plugin that lets you seamlessly load [Wezterm](https://wezfurlong.org/w
 
 ## Features
 
-- [x] Load Wezterm themes by name
-- [x] Automatic theme data fetching from Wezterm repository
+- [ ] Load Wezterm themes by name
+- [ ] Automatic theme data fetching from Wezterm repository
 - [x] Integration with colorbuddy.nvim for color application
-- [ ] Theme preview functionality
-- [ ] Theme search and autocomplete
-- [ ] Cache downloaded themes
-- [ ] Live theme reloading
-- [ ] Custom theme path support
-- [ ] Theme export functionality
+- [ ] Command to list themes
+- [ ] Search themes in telescope (optional)
 
 ## Installation
 
@@ -20,16 +16,10 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
 {
-  "S1M0N38/wezterm-theme-loader.nvim",
+  "colout/wezterm-theme-loader.nvim",
   dependencies = {
     "tjdevries/colorbuddy.nvim",
   },
-  config = function()
-    require("wezterm-theme-loader").setup({
-      -- Optional: default configuration
-      name = "Catppuccin Mocha", -- Default theme name
-      cache_path = vim.fn.stdpath("cache") .. "/wezterm-themes",
-    })
   end,
 }
 ```
@@ -40,13 +30,13 @@ After installation, you can load themes using:
 
 ```lua
 -- Load a specific theme
-require("wezterm-theme-loader").load_theme("Catppuccin Mocha")
+:WeztermThemeLoader load <theme_name>
 
 -- List available themes
-:WeztermThemeList
+:WeztermThemeLoader list
 
--- Search and preview themes
-:WeztermThemeSearch
+-- Fetch themes from wezterm git repo
+:WeztermThemeLoader fetch
 ```
 
 ## Contributing
