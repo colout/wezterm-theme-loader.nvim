@@ -6,7 +6,7 @@ M.setup = function(opts)
   require("wezterm-theme-loader.config").setup(opts)
   require("wezterm-theme-loader.cmd").create_cmds()
 
-  if not require("wezterm-theme-loader.fetch").check_output_path() then
+  if M.options.auto_fetch_on_launch and not require("wezterm-theme-loader.fetch").check_output_path() then
     require("wezterm-theme-loader.fetch").download_themes()
   end
 end
