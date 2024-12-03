@@ -1,6 +1,6 @@
 local sub_cmds = {
-  fetch = { fn = require("wezterm-theme-loader.fetch").download_themes, nargs = 0 },
-  load = { fn = require("wezterm-theme-loader.loader").apply_theme, nargs = 1 },
+  fetch = { fn = require("wezterm-theme-loader.fetch").download_themes },
+  load = { fn = require("wezterm-theme-loader.loader").apply_theme },
 }
 
 local sub_cmds_keys = {}
@@ -9,7 +9,7 @@ for k, _ in pairs(sub_cmds) do
 end
 
 local function main_cmd(opts)
-  local args = vim.split(opts.args, " ", { trimempty = true })
+  local args = vim.split(opts.args, "%s+", { trimempty = true })
   local cmd = args[1]
   local sub_cmd = sub_cmds[cmd]
 
@@ -18,15 +18,17 @@ local function main_cmd(opts)
     return
   end
 
-  if #args - 1 ~= sub_cmd.nargs then
-    vim.notify(
-      string.format("wezterm-theme-loader: command '%s' expects %d argument(s)", cmd, sub_cmd.nargs),
-      vim.log.levels.ERROR
-    )
-    return
+  if cmd == "fetch" then
+    sub_cmd.fn()
+  elseif cmd == "load" then
+    -- Everything after the first word is the theme name
+    local theme_name = opts.args:match("^%s*load%s+(.+)$")
+    if not theme_name then
+      vim.notify("wezterm-theme-loader: load command requires a theme name", vim.log.levels.ERROR)
+      return
+    end
+    sub_cmd.fn(theme_name)
   end
-
-  sub_cmd.fn(select(2, unpack(args)))
 end
 
 vim.api.nvim_create_user_command("WeztermThemeLoader", main_cmd, {
