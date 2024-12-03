@@ -30,13 +30,10 @@ After installation, you can load themes using:
 
 ```lua
 -- Load a specific theme
-:WeztermThemeLoader load <theme_name>
-
--- List available themes
-:WeztermThemeLoader list
+:WeztermThemeLoad <theme_name>
 
 -- Fetch themes from wezterm git repo
-:WeztermThemeLoader fetch
+:WeztermThemeFetch
 ```
 
 ## Contributing
