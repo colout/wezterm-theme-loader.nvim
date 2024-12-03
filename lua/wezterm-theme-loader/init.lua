@@ -8,7 +8,8 @@ M.setup = function(opts)
   require("wezterm-theme-loader.cmd").create_cmds()
 
   -- Auto fetch the file
-  if not require("wezterm-theme-loader.fetch").check_output_path() then
+  M.options = require("wezterm-theme-loader.config").options
+  if M.options.auto_fetch_on_launch and not require("wezterm-theme-loader.fetch").check_output_path() then
     require("wezterm-theme-loader.fetch").download_themes()
   end
 end
