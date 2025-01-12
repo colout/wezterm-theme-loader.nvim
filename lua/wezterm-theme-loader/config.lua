@@ -3,6 +3,7 @@ local M = {}
 
 ---@class DefaultOptions
 M.defaults = {
+  theme_name = nil,
   theme_file_path = vim.fn.stdpath("data") .. "/wezterm-themes.json", -- Where the theme file is fetched to
   auto_fetch_on_launch = true, -- Whether to automatically fetch themes on plugin load
 }

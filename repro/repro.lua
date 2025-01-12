@@ -11,10 +11,9 @@
 vim.env.LAZY_STDPATH = ".repro"
 load(vim.fn.system("curl -s https://raw.githubusercontent.com/folke/lazy.nvim/main/bootstrap.lua"))()
 
-
 local plugins = {
   {
-    "S1M0N38/base.nvim",
+    "colout/wezterm-theme-loader.nvim",
     lazy = false,
     opts = {},
   },

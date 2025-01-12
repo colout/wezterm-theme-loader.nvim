@@ -12,6 +12,10 @@ M.setup = function(opts)
   if M.options.auto_fetch_on_launch and not require("wezterm-theme-loader.fetch").check_output_path() then
     require("wezterm-theme-loader.fetch").download_themes()
   end
+
+  if M.options.theme_name then
+    require("wezterm-theme-loader.loader").apply_theme(M.options.theme_name)
+  end
 end
 
 return M

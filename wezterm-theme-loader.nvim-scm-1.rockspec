@@ -4,8 +4,8 @@ local _MODREV, _SPECREV = "scm", "-1"
 rockspec_format = "3.0"
 version = _MODREV .. _SPECREV
 
-local user = "S1M0N38"
-package = "base.nvim"
+local user = "colout"
+package = "wezterm-theme-loader.nvim"
 
 description = {
   summary = "A template for Neovim plugin",
